@@ -3,6 +3,7 @@ package com.socrates.corpus.input;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -18,6 +19,11 @@ public class FileParser {
 	
 	public List<String> readLinesFromFile(File file) throws IOException {
 		return FileUtils.readLines(file, StandardCharsets.UTF_8);
+	}
+	
+	public List<String> splitLines(String line) {
+		String[] parts = line.split("\\s+");
+		return Arrays.asList(parts);
 	}
 
 }

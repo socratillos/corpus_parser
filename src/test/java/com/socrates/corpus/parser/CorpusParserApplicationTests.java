@@ -1,7 +1,9 @@
 package com.socrates.corpus.parser;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.List;
@@ -12,18 +14,26 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.socrates.corpus.input.CorpusParser;
 import com.socrates.corpus.input.FileParser;
+import com.socrates.corpus.parser.model.Word;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CorpusParserApplicationTests {
 	
 	private static final String path = "src/test/resources/data/corpus_test.txt";
+	private static final String LINE = "coches_yes_4_9	17	61	,	,	fc	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	";
 	
 	File file;
+
 	
 	@Autowired
 	private FileParser fileParser;
+	
+	@Autowired
+	private CorpusParser corpusParser;
 	
 	@Before
 	public void setUp() {
@@ -31,13 +41,14 @@ public class CorpusParserApplicationTests {
 	}
 	
 	@Test
-	public void readFileInOneString() {
+	public void readFileInOneStringTest() {
 		try {
 			String completeStringFromFile = fileParser.readFile(file);
 			assertNotNull(completeStringFromFile);
 			assertFalse(completeStringFromFile.isEmpty());
 		} catch(Throwable ex) {
 			ex.printStackTrace();
+			fail("Exception trying to test readFileInOneString method: " + ex.getLocalizedMessage());
 		}
 	}
 	
@@ -47,9 +58,75 @@ public class CorpusParserApplicationTests {
 			List<String> multipleLinesFromFile = fileParser.readLinesFromFile(file);
 			assertNotNull(multipleLinesFromFile);
 			assertFalse(multipleLinesFromFile.isEmpty());
+			multipleLinesFromFile.stream().forEach( System.out::println);
 			
 		} catch(Throwable ex) {
 			ex.printStackTrace();
+			fail("Exception trying to test readFileInMultipleLines method: " + ex.getLocalizedMessage());
 		}
 	}
+	
+	@Test
+	public void splitLinesTest() {
+		try {
+			List<String> parts = fileParser.splitLines(LINE);
+			assertNotNull(parts);
+			assertFalse(parts.isEmpty());
+			assertEquals(25, parts.size());
+			//coches_yes_4_9	17	61	,	,	fc
+			assertEquals("coches_yes_4_9", parts.get(0));
+			assertEquals("17", parts.get(1));
+			assertEquals("61", parts.get(2));
+			assertEquals(",", parts.get(3));
+			assertEquals(",", parts.get(4));
+			assertEquals("fc", parts.get(5));
+			assertEquals("-", parts.get(6));
+			assertEquals("-", parts.get(7));
+			assertEquals("-", parts.get(8));
+			assertEquals("-", parts.get(9));
+			assertEquals("-", parts.get(10));
+			assertEquals("-", parts.get(11));
+			assertEquals("-", parts.get(12));
+			assertEquals("-", parts.get(13));
+			assertEquals("-", parts.get(14));
+			assertEquals("-", parts.get(15));
+			assertEquals("-", parts.get(16));
+			assertEquals("-", parts.get(17));
+			assertEquals("-", parts.get(18));
+			assertEquals("-", parts.get(19));
+			assertEquals("-", parts.get(20));
+			assertEquals("-", parts.get(21));
+			assertEquals("-", parts.get(22));
+			assertEquals("-", parts.get(23));
+			assertEquals("-", parts.get(24));
+		} catch(Throwable ex) {
+			ex.printStackTrace();
+			fail("Exception trying to test splitLines method: " + ex.getLocalizedMessage());
+		}
+	}
+	
+	@Test
+	public void testParseWordLine() {
+		try {
+			List<String> multipleLinesFromFile = fileParser.readLinesFromFile(file);
+			//List<String> parts = fileParser.splitLines(multipleLinesFromFile.get(0));
+			//Word word = corpusParser.parseWordLine(parts);
+			//assertNotNull(word);
+			
+			multipleLinesFromFile.forEach( line -> {
+				List<String> parts = fileParser.splitLines(line);
+				Word word = corpusParser.parseWordLine(parts);
+				if(word != null) {
+					System.out.println(word);
+					assertNotNull(word);
+				}
+				
+			});
+		} catch(Throwable ex) {
+			ex.printStackTrace();
+			fail("Exception trying to test parseWordLine method: " + ex.getLocalizedMessage());
+		}
+	}
+		
+		
 }
