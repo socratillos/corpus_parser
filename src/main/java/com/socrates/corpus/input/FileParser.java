@@ -25,5 +25,9 @@ public class FileParser {
 		String[] parts = line.split("\\s+");
 		return Arrays.asList(parts);
 	}
-
+	
+	public boolean isNewSentence(final String line) {
+		String trimLine = line.trim();
+		return trimLine.isEmpty();
+	}
 }

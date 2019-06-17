@@ -22,8 +22,11 @@ public class CorpusParser {
 		word.setPartOfSpeach(line.get(5));
 		word.setPartOfSpeachType(line.get(6));
 		word.setNegation(line.get(7));
-		//word.setSecondNegation(line.get(10));
 		
+		if(line.size() > 11 && word.isNegation()) {
+			word.setSecondNegation(line.get(10));
+		}
 		return word;
 	}
+	
 }

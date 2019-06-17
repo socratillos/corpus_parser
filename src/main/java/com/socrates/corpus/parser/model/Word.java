@@ -1,6 +1,9 @@
 package com.socrates.corpus.parser.model;
 
 public class Word {
+	
+	private static final String NEGATION_STRING = "***";
+	
 	private String domain;
 	private int sentenceNumber;
 	private int tokenNumber;
@@ -10,6 +13,11 @@ public class Word {
 	private String partOfSpeachType;
 	private String negation;
 	private String secondNegation;
+	
+	public boolean isNegation() {
+		return !negation.contains(NEGATION_STRING);
+	}
+	
 	public String getDomain() {
 		return domain;
 	}

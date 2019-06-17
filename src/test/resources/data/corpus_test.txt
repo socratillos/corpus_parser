@@ -3052,3 +3052,29 @@ coches_no_1_25	16	13	.	.	fp	-	-	-	-
 coches_no_1_25	17	1	;	;	fx	-	***	
 coches_no_1_25	17	2	)	)	fpt	-	***	
 
+hoteles_no_2_6  9   1   Aun aun np00000 proper  -   -   -   -   -   -   
+hoteles_no_2_6  9   2   estoy   estar   vaip1s0 auxiliary   -   -   -   -   -   -   
+hoteles_no_2_6  9   3   esperando   esperar vmg0000 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   4   que que cs  subordinating   -   -   -   -   -   -   
+hoteles_no_2_6  9   5   me  me  pp1cs000    personal    -   -   -   -   -   -   
+hoteles_no_2_6  9   6   carguen cargar  vmsp3p0 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   7   los el  da0mp0  article -   -   -   -   -   -   
+hoteles_no_2_6  9   8   puntos  punto   ncmp000 common  -   -   -   -   -   -   
+hoteles_no_2_6  9   9   en  en  sps00   preposition -   -   -   -   -   -   
+hoteles_no_2_6  9   10  mi  mi  dp1css  possessive  -   -   -   -   -   -   
+hoteles_no_2_6  9   11  tarjeta tarjeta ncfs000 common  -   -   -   -   -   -   
+hoteles_no_2_6  9   12  más más rg  -   -   -   -   -   -   -   
+hoteles_no_2_6  9   13  ,   ,   fc  -   -   -   -   -   -   -   
+hoteles_no_2_6  9   14  no  no  rn  negative    no  -   -   -   -   -   
+hoteles_no_2_6  9   15  sé  saber   vmip1s0 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   16  dónde   dónde   pt000000    interrogative   -   -   -   -   -   -   
+hoteles_no_2_6  9   17  tienen  tener   vmip3p0 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   18  la  el  da0fs0  article -   -   -   -   -   -   
+hoteles_no_2_6  9   19  cabeza  cabeza  ncfs000 common  -   -   -   -   -   -   
+hoteles_no_2_6  9   20  pero    pero    cc  coordinating    -   -   -   -   -   -   
+hoteles_no_2_6  9   21  no  no  rn  negative    -   -   -   no  -   -   
+hoteles_no_2_6  9   22  la  lo  pp3fsa00    personal    -   -   -   -   -   -   
+hoteles_no_2_6  9   23  tienen  tener   vmip3p0 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   24  donde   donde   pr000000    relative    -   -   -   -   -   -   
+hoteles_no_2_6  9   25  deberían    deber   vmic3p0 main    -   -   -   -   -   -   
+hoteles_no_2_6  9   26  .   .   fp  -   -   -   -   -   -   -

@@ -3,9 +3,11 @@ package com.socrates.corpus.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -17,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.socrates.corpus.input.CorpusParser;
 import com.socrates.corpus.input.FileParser;
+import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
 
 @RunWith(SpringRunner.class)
@@ -24,10 +27,13 @@ import com.socrates.corpus.parser.model.Word;
 public class CorpusParserApplicationTests {
 	
 	private static final String path = "src/test/resources/data/corpus_test.txt";
+	private static final String path_space_division = "src/test/resources/data/corpus_with_space_division.txt";
 	private static final String LINE = "coches_yes_4_9	17	61	,	,	fc	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	";
 	
+	
+	
 	File file;
-
+	File file_with_spaces;
 	
 	@Autowired
 	private FileParser fileParser;
@@ -38,6 +44,7 @@ public class CorpusParserApplicationTests {
 	@Before
 	public void setUp() {
 		file = new File(path);
+		file_with_spaces = new File(path_space_division);
 	}
 	
 	@Test
@@ -63,6 +70,27 @@ public class CorpusParserApplicationTests {
 		} catch(Throwable ex) {
 			ex.printStackTrace();
 			fail("Exception trying to test readFileInMultipleLines method: " + ex.getLocalizedMessage());
+		}
+	}
+	
+	@Test
+	public void readFileWithSpaceDivision() {
+		try {
+			List<String> multipleLinesFromFile = fileParser.readLinesFromFile(file_with_spaces);
+			assertNotNull(multipleLinesFromFile);
+			assertFalse(multipleLinesFromFile.isEmpty());
+			boolean hasSpaceDivision = false;
+			for(String line : multipleLinesFromFile) {
+				hasSpaceDivision = fileParser.isNewSentence(line);
+				if(hasSpaceDivision) {
+					return;
+				}
+			}
+			assertTrue(hasSpaceDivision);
+			
+		} catch(Throwable ex) {
+			ex.printStackTrace();
+			fail("Exception trying to test isNewSentence method: " + ex.getLocalizedMessage());
 		}
 	}
 	
@@ -109,19 +137,30 @@ public class CorpusParserApplicationTests {
 	public void testParseWordLine() {
 		try {
 			List<String> multipleLinesFromFile = fileParser.readLinesFromFile(file);
-			//List<String> parts = fileParser.splitLines(multipleLinesFromFile.get(0));
-			//Word word = corpusParser.parseWordLine(parts);
-			//assertNotNull(word);
+			Sentence sentence = new Sentence();
+			List<Sentence> sentences = new ArrayList<>();
+			boolean hasTwoNegations = Boolean.FALSE;
 			
-			multipleLinesFromFile.forEach( line -> {
-				List<String> parts = fileParser.splitLines(line);
-				Word word = corpusParser.parseWordLine(parts);
-				if(word != null) {
-					System.out.println(word);
-					assertNotNull(word);
-				}
+			for(String line: multipleLinesFromFile) {
 				
-			});
+				if(!fileParser.isNewSentence(line)) {
+					List<String> parts = fileParser.splitLines(line);
+					Word word = corpusParser.parseWordLine(parts);
+					sentence.addWord(word);
+				} else {
+					assertFalse(sentence.isEmpty());
+					
+					if(sentence.hastTwoNegation()) {
+						System.out.println("Two negations: " + sentence);
+						hasTwoNegations = Boolean.TRUE;
+					}
+					sentences.add(sentence);
+					sentence = new Sentence();
+				}
+			}
+			
+			assertTrue(hasTwoNegations);
+				
 		} catch(Throwable ex) {
 			ex.printStackTrace();
 			fail("Exception trying to test parseWordLine method: " + ex.getLocalizedMessage());
