@@ -132,7 +132,7 @@ public class CorpusParserApplicationTests {
 			fail("Exception trying to test splitLines method: " + ex.getLocalizedMessage());
 		}
 	}
-	
+	//Last
 	@Test
 	public void testParseWordLine() {
 		try {
@@ -151,7 +151,6 @@ public class CorpusParserApplicationTests {
 					assertFalse(sentence.isEmpty());
 					
 					if(sentence.hastTwoNegation()) {
-						System.out.println("Two negations: " + sentence);
 						hasTwoNegations = Boolean.TRUE;
 					}
 					sentences.add(sentence);
