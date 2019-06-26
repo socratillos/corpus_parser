@@ -28,6 +28,6 @@ public class LemasMap {
 			}
 		}
 		
-		return 0L;
+		return -1L;
 	}
 }

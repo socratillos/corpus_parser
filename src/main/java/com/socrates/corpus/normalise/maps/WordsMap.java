@@ -28,7 +28,7 @@ public class WordsMap {
 			}
 		}
 		
-		return 0L;
+		return -1L;
 	}
 
 }

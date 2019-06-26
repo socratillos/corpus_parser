@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.socrates.corpus.normalise.maps.LemasMap;
-import com.socrates.corpus.normalise.maps.PartOfSpeechMap;
-import com.socrates.corpus.normalise.maps.PartOfSpeechTypeMap;
+import com.socrates.corpus.normalise.maps.PartOfSpeachMap;
+import com.socrates.corpus.normalise.maps.PartOfSpeachTypeMap;
 import com.socrates.corpus.normalise.maps.WordsMap;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Word;
@@ -16,6 +16,11 @@ public class NormalizationService {
 	
 	public Optional<NormalisedWord> normalise(Word word) {
 		if(word != null) {
+			
+			assert word.getWord() != null;
+			assert word.getLema() != null;
+			assert word.getPartOfSpeach() != null;
+			assert word.getPartOfSpeachType() != null;
 			
 			NormalisedWord normalisedWord = new NormalisedWord();
 			normalisedWord.setSentenceNumber(Long.valueOf(word.getSentenceNumber()));
@@ -27,10 +32,10 @@ public class NormalizationService {
 			Long lemaId = LemasMap.getLemaId(word.getLema());
 			normalisedWord.setLema(lemaId);
 			
-			Long partOfSpeechId = PartOfSpeechMap.getPartOfSpeechId(word.getPartOfSpeach());
+			Long partOfSpeechId = PartOfSpeachMap.getPartOfSpeechId(word.getPartOfSpeach());
 			normalisedWord.setPartOfSpeach(partOfSpeechId);
 			
-			Long partOfSpeechTypeId = PartOfSpeechTypeMap.getPartOfSpeechTypeId(word.getPartOfSpeachType());
+			Long partOfSpeechTypeId = PartOfSpeachTypeMap.getPartOfSpeechTypeId(word.getPartOfSpeachType());
 			normalisedWord.setPartOfSpeachType(partOfSpeechTypeId);
 			
 			if(word.isNegation()) {
@@ -45,6 +50,8 @@ public class NormalizationService {
 			} else {
 				normalisedWord.setNegation(0);
 			}
+			
+			return Optional.of(normalisedWord);
 		}
 		
 		return Optional.empty();

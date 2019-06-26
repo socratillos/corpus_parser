@@ -3,9 +3,9 @@ package com.socrates.corpus.normalise.maps;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PartOfSpeechTypeMap {
+public class PartOfSpeachTypeMap {
 	
-	private PartOfSpeechTypeMap() {
+	private PartOfSpeachTypeMap() {
 		throw new IllegalStateException("Utility Map class");
 	}
 	
@@ -29,7 +29,7 @@ public class PartOfSpeechTypeMap {
 			}
 		} 
 
-		return 0L;
+		return -1L;
 		
 	}
 	

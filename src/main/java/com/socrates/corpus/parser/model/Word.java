@@ -15,7 +15,7 @@ public class Word {
 	private String secondNegation;
 	
 	public boolean isNegation() {
-		return !negation.contains(NEGATION_STRING);
+		return negation != null && !negation.contains(NEGATION_STRING);
 	}
 	
 	public String getDomain() {
