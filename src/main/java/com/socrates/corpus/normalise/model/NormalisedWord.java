@@ -2,6 +2,7 @@ package com.socrates.corpus.normalise.model;
 
 public class NormalisedWord {
 	
+	private String domainName;
 	private Long sentenceNumber;
 	private Long tokenNumber;
 	private Long word;
@@ -59,10 +60,17 @@ public class NormalisedWord {
 	public void setSecondNegation(int secondNegation) {
 		this.secondNegation = secondNegation;
 	}
+	public String getDomainName() {
+		return domainName;
+	}
+	public void setDomainName(String domainName) {
+		this.domainName = domainName;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((domainName == null) ? 0 : domainName.hashCode());
 		result = prime * result + ((lema == null) ? 0 : lema.hashCode());
 		result = prime * result + negation;
 		result = prime * result + ((partOfSpeach == null) ? 0 : partOfSpeach.hashCode());
@@ -82,6 +90,11 @@ public class NormalisedWord {
 		if (getClass() != obj.getClass())
 			return false;
 		NormalisedWord other = (NormalisedWord) obj;
+		if (domainName == null) {
+			if (other.domainName != null)
+				return false;
+		} else if (!domainName.equals(other.domainName))
+			return false;
 		if (lema == null) {
 			if (other.lema != null)
 				return false;
@@ -120,9 +133,10 @@ public class NormalisedWord {
 	}
 	@Override
 	public String toString() {
-		return "NormalisedWord [sentenceNumber=" + sentenceNumber + ", tokenNumber=" + tokenNumber + ", word=" + word
-				+ ", lema=" + lema + ", partOfSpeach=" + partOfSpeach + ", partOfSpeachType=" + partOfSpeachType
-				+ ", negation=" + negation + ", secondNegation=" + secondNegation + "]";
+		return "NormalisedWord [domainName=" + domainName + ", sentenceNumber=" + sentenceNumber + ", tokenNumber="
+				+ tokenNumber + ", word=" + word + ", lema=" + lema + ", partOfSpeach=" + partOfSpeach
+				+ ", partOfSpeachType=" + partOfSpeachType + ", negation=" + negation + ", secondNegation="
+				+ secondNegation + "]";
 	}
 
 }

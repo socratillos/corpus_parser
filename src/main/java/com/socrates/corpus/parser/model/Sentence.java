@@ -15,6 +15,10 @@ public class Sentence {
 		words.add(word);
 	}
 	
+	public List<Word> getWords() {
+		return this.words;
+	}
+	
 	public Word getWordByIndex(int index) {
 		return words.get(index);
 	}

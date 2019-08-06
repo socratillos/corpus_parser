@@ -1,5 +1,8 @@
 package com.socrates.corpus.normalise;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import com.socrates.corpus.normalise.maps.PartOfSpeachMap;
 import com.socrates.corpus.normalise.maps.PartOfSpeachTypeMap;
 import com.socrates.corpus.normalise.maps.WordsMap;
 import com.socrates.corpus.normalise.model.NormalisedWord;
+import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
 
 @Service
@@ -23,6 +27,7 @@ public class NormalizationService {
 			assert word.getPartOfSpeachType() != null;
 			
 			NormalisedWord normalisedWord = new NormalisedWord();
+			normalisedWord.setDomainName(word.getDomain());
 			normalisedWord.setSentenceNumber(Long.valueOf(word.getSentenceNumber()));
 			normalisedWord.setTokenNumber(Long.valueOf(word.getTokenNumber()));
 			
@@ -55,6 +60,38 @@ public class NormalizationService {
 		}
 		
 		return Optional.empty();
+	}
+	
+	public List<NormalisedWord> normalise(Sentence sentence) {
+		assert sentence != null;
+		assert sentence.getWords() != null;
+		
+		List<NormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentence.getWords().forEach( word -> {
+			Optional<NormalisedWord> optionalNormalisedWord = normalise(word);
+			if(optionalNormalisedWord.isPresent()) {
+				normalisedWords.add(optionalNormalisedWord.get());
+			}
+		});
+		
+		if(normalisedWords.isEmpty()) {
+			return Collections.emptyList();
+		}
+		
+		return normalisedWords;
+	}
+	
+	public List<NormalisedWord> normalise(List<Sentence> sentences) {
+		assert sentences != null;
+		
+		List<NormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentences.forEach( sentence -> {
+			normalisedWords.addAll(normalise(sentence));
+		});
+		
+		return normalisedWords;
 	}
 	
 	

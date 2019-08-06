@@ -41,7 +41,6 @@ public class NormalizationTests {
 	private static final String PART_OF_SPEACH_TYPE = "article";
 	
 	//NEGATION
-	//Word [domain=coches_no_2_20, sentenceNumber=6, tokenNumber=1, word=Hoy, lema=hoy, partOfSpeach=rg, partOfSpeachType=-, negation=-, secondNegation=-]
 	private static final Integer SENTENCE_NUMBER_NEGATION = 6;
 	private static final Integer TOKEN_NUMBER_NEGATION = 1;
 	private static final String DOMAIN_NEGATION = "coches_no_2_20";
@@ -66,6 +65,7 @@ public class NormalizationTests {
 			assertTrue(optionalObject.isPresent());
 			
 			NormalisedWord normalisedWord = optionalObject.get();
+			assertEquals(DOMAIN, normalisedWord.getDomainName());
 			assertEquals(Long.valueOf(SENTENCE_NUMBER) , normalisedWord.getSentenceNumber());
 			assertEquals(Long.valueOf(TOKEN_NUMBER), normalisedWord.getTokenNumber());
 			
@@ -97,6 +97,7 @@ public class NormalizationTests {
 			assertTrue(optionalObject.isPresent());
 			
 			NormalisedWord normalisedWord = optionalObject.get();
+			assertEquals(DOMAIN_NEGATION, normalisedWord.getDomainName());
 			assertEquals(Long.valueOf(SENTENCE_NUMBER_NEGATION) , normalisedWord.getSentenceNumber());
 			assertEquals(Long.valueOf(TOKEN_NUMBER_NEGATION), normalisedWord.getTokenNumber());
 			
@@ -122,7 +123,8 @@ public class NormalizationTests {
 	@Test
 	public void testNormaliseWithNullWord() {
 		try {
-			Optional<NormalisedWord> optionalObject = normalizationService.normalise(null);
+			Word word = null;
+			Optional<NormalisedWord> optionalObject = normalizationService.normalise(word);
 			assertFalse(optionalObject.isPresent());
 		} catch(Throwable ex) {
 			fail("Exception trying to test normalise method with null word: " + ex.getLocalizedMessage());

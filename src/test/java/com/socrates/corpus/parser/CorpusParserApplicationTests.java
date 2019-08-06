@@ -161,7 +161,6 @@ public class CorpusParserApplicationTests {
 			assertTrue(hasTwoNegations);
 				
 		} catch(Throwable ex) {
-			ex.printStackTrace();
 			fail("Exception trying to test parseWordLine method: " + ex.getLocalizedMessage());
 		}
 	}
