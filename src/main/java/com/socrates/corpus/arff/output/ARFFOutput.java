@@ -4,12 +4,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
 import com.socrates.corpus.normalise.model.NormalisedWord;
 
 @Service
 public class ARFFOutput {
+	
+	private final static String NEGATIVE = "negative";
+	private final static String POSITIVE = "positive";
 	
 	private String title;
 	
@@ -18,9 +22,9 @@ public class ARFFOutput {
 		
 		fw.write("% 1. Title: Test\n");
 		fw.write("%\n");
-		fw.write("2. Sources:\n");
+		fw.write("% 2. Sources:\n");
 		fw.write("%      (a) Creator: R.A. Fisher\n");
-		fw.write("(b) Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n");
+		fw.write("% (b) Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n");
 		fw.write("%      (c) Date: July, 1988\n");
 		fw.write("%\n");
 		
@@ -33,8 +37,7 @@ public class ARFFOutput {
 		fw.write(Headers.ATTRIBUTE.header + " lema " + AttributeTypes.NUMERIC.value+"\n");
 		fw.write(Headers.ATTRIBUTE.header + " partOfSpeach " + AttributeTypes.NUMERIC.value+"\n");
 		fw.write(Headers.ATTRIBUTE.header + " partOfSpeachType " + AttributeTypes.NUMERIC.value+"\n");
-		fw.write(Headers.ATTRIBUTE.header + " negation " + AttributeTypes.NUMERIC.value+"\n");
-		fw.write(Headers.ATTRIBUTE.header + " secondNegation " + AttributeTypes.NUMERIC.value+"\n");
+		fw.write(Headers.ATTRIBUTE.header + " " + AttributeTypes.CLASS.value + " " + "{" + POSITIVE + ", " + NEGATIVE + "}\n");
 		
 		fw.write(Headers.DATA.header+"\n");
 		
@@ -47,8 +50,11 @@ public class ARFFOutput {
 				fw.write(normalisedWord.getLema().toString()+",");
 				fw.write(normalisedWord.getPartOfSpeach().toString()+",");
 				fw.write(normalisedWord.getPartOfSpeachType().toString()+",");
-				fw.write(String.valueOf(normalisedWord.getNegation())+",");
-				fw.write(String.valueOf(normalisedWord.getSecondNegation()));
+				if(NumberUtils.INTEGER_ONE.equals(normalisedWord.getNegation())) {
+					fw.write(NEGATIVE);
+				} else {
+					fw.write(POSITIVE);
+				}
 				fw.write("\n");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
