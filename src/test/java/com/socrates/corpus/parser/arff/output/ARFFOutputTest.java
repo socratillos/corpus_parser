@@ -1,6 +1,8 @@
 package com.socrates.corpus.parser.arff.output;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -8,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,8 @@ import com.socrates.corpus.normalise.NormalizationService;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
+import com.socrates.corpus.redis.model.Lema;
+import com.socrates.corpus.redis.repo.LemaRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -43,6 +47,9 @@ public class ARFFOutputTest {
 	
 	@Autowired
 	private FileParser fileParser;
+	
+	@Autowired
+	private LemaRepository lemaRepository;
 	
 	@Before
 	public void setUp() {
@@ -120,6 +127,14 @@ public class ARFFOutputTest {
 			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentences);
 			FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords);
 			assertNotNull(fw);
+			Map<String, Lema> lemas = lemaRepository.findAll();
+			assertNotNull(lemas);
+			assertFalse(lemas.isEmpty());
+			
+			for (Map.Entry<String, Lema> entry : lemas.entrySet()) {
+			    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
+			}
 			
 		} catch(Throwable ex) {
 			ex.printStackTrace();

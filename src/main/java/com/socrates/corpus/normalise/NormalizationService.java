@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.socrates.corpus.normalise.maps.LemasMap;
@@ -14,9 +15,14 @@ import com.socrates.corpus.normalise.maps.WordsMap;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
+import com.socrates.corpus.redis.model.Lema;
+import com.socrates.corpus.redis.repo.LemaRepository;
 
 @Service
 public class NormalizationService {
+	
+	@Autowired
+	private LemaRepository lemaRepository;
 	
 	public Optional<NormalisedWord> normalise(Word word) {
 		if(word != null) {
@@ -34,8 +40,12 @@ public class NormalizationService {
 			Long wordId = WordsMap.getWordId(word.getWord());
 			normalisedWord.setWord(wordId);
 			
-			Long lemaId = LemasMap.getLemaId(word.getLema());
-			normalisedWord.setLema(lemaId);
+			Long lemaLongValue = LemasMap.getLemaId(word.getLema());
+			normalisedWord.setLema(lemaLongValue);
+			//Create a Lema object
+			Lema lema = new Lema(word.getLema(), lemaLongValue);
+			lemaRepository.save(lema);
+			
 			
 			Long partOfSpeechId = PartOfSpeachMap.getPartOfSpeechId(word.getPartOfSpeach());
 			normalisedWord.setPartOfSpeach(partOfSpeechId);
