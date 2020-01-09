@@ -46,7 +46,15 @@ public class Sentence {
 		
 		return false;
 	}
-
+	
+	public int getNumberOfWords() {
+		if(words != null) {
+			return words.size();
+		} else {
+			return 0;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

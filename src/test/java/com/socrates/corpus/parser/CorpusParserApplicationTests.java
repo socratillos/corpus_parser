@@ -22,6 +22,7 @@ import com.socrates.corpus.input.FileParser;
 import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CorpusParserApplicationTests {

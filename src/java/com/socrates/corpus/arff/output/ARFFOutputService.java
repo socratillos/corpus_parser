@@ -1,19 +1,34 @@
 package com.socrates.corpus.arff.output;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.socrates.corpus.input.CorpusParser;
+import com.socrates.corpus.normalise.NormalizationService;
 import com.socrates.corpus.normalise.model.NormalisedWord;
+import com.socrates.corpus.parser.model.Sentence;
 
 @Service
-public class ARFFOutput {
+public class ARFFOutputService {
 	
 	private final static String NEGATIVE = "negative";
 	private final static String POSITIVE = "positive";
+	
+	@Autowired
+	private CorpusParser corpusParser;
+	
+	@Autowired
+	private ARFFOutputService outputService;
+	
+	@Autowired
+	private NormalizationService normalizationService;
+	
 	
 	private String title;
 	
@@ -64,6 +79,18 @@ public class ARFFOutput {
 		
 		fw.close();
 		
+		return fw;
+	}
+	
+	
+	public FileWriter writeFormatedFileFromInputFile(File file) throws IOException{
+		List<Sentence> sentences = corpusParser.parseFile(file);
+		FileWriter fw = null;
+		
+		for(Sentence sentence : sentences) {
+			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentence);
+			fw = outputService.writeFileFromNormalisedObject(normalisedWords);
+		}
 		return fw;
 	}
 }

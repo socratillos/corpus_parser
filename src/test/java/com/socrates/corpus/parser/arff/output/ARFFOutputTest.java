@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.socrates.corpus.arff.output.ARFFOutput;
+import com.socrates.corpus.arff.output.ARFFOutputService;
 import com.socrates.corpus.input.CorpusParser;
 import com.socrates.corpus.input.FileParser;
 import com.socrates.corpus.normalise.NormalizationService;
@@ -37,7 +37,7 @@ public class ARFFOutputTest {
 	File file;
 	
 	@Autowired
-	private ARFFOutput outputService;
+	private ARFFOutputService outputService;
 	
 	@Autowired
 	private NormalizationService normalizationService;
@@ -59,48 +59,8 @@ public class ARFFOutputTest {
 	@Test
 	public void testWriteFileFromNormalisedObject() {
 		try {
-			List<String> multipleLinesFromFile = fileParser.readLinesFromFile(file);
-			Sentence sentence = new Sentence();
-			List<Sentence> sentences = new ArrayList<>();
-			for(String line: multipleLinesFromFile) {
-				if(!fileParser.isNewSentence(line)) {
-					List<String> parts = fileParser.splitLines(line);
-					Word word = corpusParser.parseWordLine(parts);
-					sentence.addWord(word);
-				} else {
-					sentences.add(sentence);
-					sentence = new Sentence();
-				}
-			}
-			
-			for(Sentence sentenceFromLoop : sentences) {
-				
-				List<NormalisedWord> normalisedWords = normalizationService.normalise(sentenceFromLoop);
-				try {
-					FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords);
-					assertNotNull(fw);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					fail();
-				}
-				
-			}
-			sentences.forEach( sentenceFromList -> {
-				
-				List<NormalisedWord> normalisedWords = normalizationService.normalise(sentenceFromList);
-				try {
-					FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords);
-					assertNotNull(fw);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					fail();
-				}
-				
-				
-			});
-			
+			FileWriter fw = outputService.writeFormatedFileFromInputFile(file);
+			assertNotNull(fw);
 		} catch(Throwable ex) {
 			ex.printStackTrace();
 			fail("Exception trying to test normalise method: " + ex.getLocalizedMessage());
@@ -124,16 +84,27 @@ public class ARFFOutputTest {
 				}
 			}
 			
-			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentences);
+			//Get the max amount of words in a sentence
+			int max = 0;
+			for(Sentence sentenceFromList : sentences) {
+				if(sentenceFromList.getNumberOfWords() > max) {
+					max = sentenceFromList.getNumberOfWords();
+				}
+			}
+			
+			
+			//Write the normalized sentences into the file
+			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentences, max);
 			FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords);
 			assertNotNull(fw);
+			
+			//Test for redis
 			Map<String, Lema> lemas = lemaRepository.findAll();
 			assertNotNull(lemas);
 			assertFalse(lemas.isEmpty());
 			
 			for (Map.Entry<String, Lema> entry : lemas.entrySet()) {
 			    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
 			}
 			
 		} catch(Throwable ex) {

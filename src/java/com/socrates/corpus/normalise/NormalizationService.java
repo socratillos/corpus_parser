@@ -24,6 +24,9 @@ public class NormalizationService {
 	@Autowired
 	private LemaRepository lemaRepository;
 	
+	private static final String EMTPY_DOMAIN = "empty_domain";
+	private static final  Long EMPTY_LONG = 0L;
+	
 	public Optional<NormalisedWord> normalise(Word word) {
 		if(word != null) {
 			
@@ -72,6 +75,21 @@ public class NormalizationService {
 		return Optional.empty();
 	}
 	
+	public NormalisedWord normaliseEmptyWord(NormalisedWord word) {
+		NormalisedWord emptyWord = new NormalisedWord();
+		Long tokenNumber = word.getTokenNumber() + 1;
+		
+		emptyWord.setDomainName(word.getDomainName());
+		emptyWord.setSentenceNumber(word.getSentenceNumber());
+		emptyWord.setTokenNumber(tokenNumber);
+		emptyWord.setWord(EMPTY_LONG);
+		emptyWord.setLema(EMPTY_LONG);
+		emptyWord.setPartOfSpeach(EMPTY_LONG);
+		emptyWord.setPartOfSpeachType(EMPTY_LONG);
+		
+		return emptyWord;
+	}
+	
 	public List<NormalisedWord> normalise(Sentence sentence) {
 		assert sentence != null;
 		assert sentence.getWords() != null;
@@ -92,6 +110,35 @@ public class NormalizationService {
 		return normalisedWords;
 	}
 	
+	public List<NormalisedWord> normalise(Sentence sentence, int max) {
+		assert sentence != null;
+		assert sentence.getWords() != null;
+		
+		List<NormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentence.getWords().forEach( word -> {
+			Optional<NormalisedWord> optionalNormalisedWord = normalise(word);
+			if(optionalNormalisedWord.isPresent()) {
+				normalisedWords.add(optionalNormalisedWord.get());
+			}
+		});
+		
+		if(normalisedWords.isEmpty()) {
+			return Collections.emptyList();
+		} else if(sentence.getNumberOfWords() < max){
+			int dif = max - sentence.getNumberOfWords();
+			
+			for(int i = 0; i < dif; i++) {
+				//Iterables
+				NormalisedWord lastNormalisedWord = normalisedWords.get(normalisedWords.size() - 1);
+				normalisedWords.add(normaliseEmptyWord(lastNormalisedWord));
+			}
+			
+		}
+		
+		return normalisedWords;
+	}
+	
 	public List<NormalisedWord> normalise(List<Sentence> sentences) {
 		assert sentences != null;
 		
@@ -99,6 +146,18 @@ public class NormalizationService {
 		
 		sentences.forEach( sentence -> {
 			normalisedWords.addAll(normalise(sentence));
+		});
+		
+		return normalisedWords;
+	}
+	
+	public List<NormalisedWord> normalise(List<Sentence> sentences, int max) {
+		assert sentences != null;
+		
+		List<NormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentences.forEach( sentence -> {
+			normalisedWords.addAll(normalise(sentence, max));
 		});
 		
 		return normalisedWords;
