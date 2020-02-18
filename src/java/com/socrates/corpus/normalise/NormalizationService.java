@@ -12,6 +12,7 @@ import com.socrates.corpus.normalise.maps.LemasMap;
 import com.socrates.corpus.normalise.maps.PartOfSpeachMap;
 import com.socrates.corpus.normalise.maps.PartOfSpeachTypeMap;
 import com.socrates.corpus.normalise.maps.WordsMap;
+import com.socrates.corpus.normalise.model.GRMMNormalisedWord;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
@@ -26,6 +27,9 @@ public class NormalizationService {
 	
 	private static final String EMTPY_DOMAIN = "empty_domain";
 	private static final  Long EMPTY_LONG = 0L;
+	private static final String EMPTY_SPACE = " ";
+	private static final String POSSITIVE = "positive";
+	private static final String NEGATIVE = "negative";
 	
 	public Optional<NormalisedWord> normalise(Word word) {
 		if(word != null) {
@@ -73,6 +77,24 @@ public class NormalizationService {
 		}
 		
 		return Optional.empty();
+	}
+	
+	public GRMMNormalisedWord normaliseGRMMWord(Word word) {
+		GRMMNormalisedWord grmmWord = new GRMMNormalisedWord();
+		grmmWord.setDomain(word.getDomain());
+		grmmWord.setSentenceNumber(word.getSentenceNumber());
+		grmmWord.setTokenNumber(word.getTokenNumber());
+		grmmWord.setWord(word.getWord());
+		grmmWord.setLema(word.getLema());
+		grmmWord.setPartOfSpeach(word.getPartOfSpeach());
+		grmmWord.setPartOfSpeachType(word.getPartOfSpeachType());
+		if(word.isNegation()) {
+			grmmWord.setNegation(NEGATIVE);
+		} else {
+			grmmWord.setNegation(POSSITIVE);
+		}
+		
+		return grmmWord;
 	}
 	
 	public NormalisedWord normaliseEmptyWord(NormalisedWord word) {

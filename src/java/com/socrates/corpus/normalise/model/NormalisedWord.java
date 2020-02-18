@@ -138,5 +138,4 @@ public class NormalisedWord {
 				+ ", partOfSpeachType=" + partOfSpeachType + ", negation=" + negation + ", secondNegation="
 				+ secondNegation + "]";
 	}
-
 }
