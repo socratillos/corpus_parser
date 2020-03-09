@@ -97,6 +97,38 @@ public class NormalizationService {
 		return grmmWord;
 	}
 	
+	public List<GRMMNormalisedWord> normaliseGRMMSentence(Sentence sentence) {
+		assert sentence != null;
+		assert sentence.getWords() != null;
+		
+		List<GRMMNormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentence.getWords().forEach( word -> {
+			GRMMNormalisedWord grmmWord = normaliseGRMMWord(word);
+			if(grmmWord != null) {
+				normalisedWords.add(grmmWord);
+			}
+			
+		});
+		
+		return normalisedWords;
+	}
+	
+	public List<GRMMNormalisedWord> normaliseGRMMSentences(List<Sentence> sentences) {
+		assert sentences != null;
+		assert !sentences.isEmpty();
+		
+		List<GRMMNormalisedWord> normalisedWords = new ArrayList<>();
+		
+		sentences.forEach( sentence -> {
+			if(sentence.getWords() != null && !sentence.getWords().isEmpty()) {
+				normalisedWords.addAll(normaliseGRMMSentence(sentence));
+			}
+		});
+		
+		return normalisedWords;
+	}
+	
 	public NormalisedWord normaliseEmptyWord(NormalisedWord word) {
 		NormalisedWord emptyWord = new NormalisedWord();
 		Long tokenNumber = word.getTokenNumber() + 1;

@@ -5,20 +5,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.socrates.corpus.input.CorpusParser;
 import com.socrates.corpus.normalise.NormalizationService;
+import com.socrates.corpus.normalise.model.GRMMNormalisedWord;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Sentence;
+import com.socrates.corpus.parser.model.Word;
 
 @Service
 public class ARFFOutputService {
 	
 	private final static String NEGATIVE = "negative";
 	private final static String POSITIVE = "positive";
+	private final static String WHITE_SPACE = " ";
+	private final static String SEPARATION = "----";
+	private final static String DOMAIN_FAIL_NAME = "domain_filename";
+	private final static String SENTENCE_NUMBER = "sentence number";
+	private final static String TOKEN_NUMBER = "token number";
+	private final static String LEMA = "lemma";
+	private final static String PART_OF_SPEECH = "part-of-speech";
+	private final static String EQUALS = "=";
 	
 	@Autowired
 	private CorpusParser corpusParser;
@@ -31,6 +42,57 @@ public class ARFFOutputService {
 	
 	
 	private String title;
+	
+	public FileWriter writeFileFromGRMMNormalisedObject(List<GRMMNormalisedWord> normalisedWords) throws IOException {
+		FileWriter fw = new FileWriter("src/test/resources/data/corpus_test.txt");
+		
+		normalisedWords.forEach( word -> {
+			
+			try {
+				fw.write(word.getWord());
+				fw.write(WHITE_SPACE);
+				fw.write(word.getPartOfSpeachType());
+				fw.write(WHITE_SPACE);
+				
+				fw.write(SEPARATION);
+				fw.write(WHITE_SPACE);
+				
+				fw.write(DOMAIN_FAIL_NAME);
+				fw.write(EQUALS);
+				fw.write(word.getDomain());
+				fw.write(WHITE_SPACE);
+				
+				fw.write(SENTENCE_NUMBER);
+				fw.write(EQUALS);
+				fw.write(String.valueOf(word.getSentenceNumber()));
+				fw.write(WHITE_SPACE);
+				
+				fw.write(TOKEN_NUMBER);
+				fw.write(EQUALS);
+				fw.write(String.valueOf(word.getTokenNumber()));
+				fw.write(WHITE_SPACE);
+				
+				fw.write(LEMA);
+				fw.write(EQUALS);
+				fw.write(word.getLema());
+				fw.write(WHITE_SPACE);
+				
+				fw.write(PART_OF_SPEECH);
+				fw.write(EQUALS);
+				fw.write(word.getPartOfSpeach());
+				
+				fw.write("\n");
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		});
+		
+		return fw;
+	}
 	
 	public FileWriter writeFileFromNormalisedObject(List<NormalisedWord> normalisedWords) throws IOException {
 		FileWriter fw = new FileWriter("src/test/resources/data/corpus.arff");
