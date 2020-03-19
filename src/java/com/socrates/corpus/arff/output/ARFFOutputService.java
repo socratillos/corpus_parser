@@ -28,7 +28,7 @@ public class ARFFOutputService {
 	private final static String SENTENCE_NUMBER = "sentence_number";
 	private final static String TOKEN_NUMBER = "token_number";
 	private final static String LEMA = "lemma";
-	private final static String PART_OF_SPEECH = "part-of-speech";
+	private final static String PART_OF_SPEECH = "part_of_speech";
 	private final static String EQUALS = "=";
 	
 	@Autowired
