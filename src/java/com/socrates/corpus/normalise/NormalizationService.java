@@ -12,12 +12,15 @@ import com.socrates.corpus.normalise.maps.LemasMap;
 import com.socrates.corpus.normalise.maps.PartOfSpeachMap;
 import com.socrates.corpus.normalise.maps.PartOfSpeachTypeMap;
 import com.socrates.corpus.normalise.maps.WordsMap;
+import com.socrates.corpus.normalise.model.GRMMNeighbour;
 import com.socrates.corpus.normalise.model.GRMMNormalisedWord;
 import com.socrates.corpus.normalise.model.NormalisedWord;
 import com.socrates.corpus.parser.model.Sentence;
 import com.socrates.corpus.parser.model.Word;
 import com.socrates.corpus.redis.model.Lema;
 import com.socrates.corpus.redis.repo.LemaRepository;
+
+import ch.qos.logback.core.joran.conditional.IfAction;
 
 @Service
 public class NormalizationService {
@@ -79,7 +82,7 @@ public class NormalizationService {
 		return Optional.empty();
 	}
 	
-	public GRMMNormalisedWord normaliseGRMMWord(Word word) {
+	public GRMMNormalisedWord normaliseGRMMWord(Word word, List<GRMMNeighbour> previousWords, List<GRMMNeighbour> nextWords) {
 		GRMMNormalisedWord grmmWord = new GRMMNormalisedWord();
 		grmmWord.setDomain(word.getDomain());
 		grmmWord.setSentenceNumber(word.getSentenceNumber());
@@ -89,10 +92,10 @@ public class NormalizationService {
 		grmmWord.setPartOfSpeach(word.getPartOfSpeach());
 		grmmWord.setPartOfSpeachType(word.getPartOfSpeachType());
 		if(word.isNegation()) {
-			grmmWord.setNegation(NEGATIVE);
-		} else {
-			grmmWord.setNegation(POSSITIVE);
+			grmmWord.setNegation(word.getNegation());
 		}
+		grmmWord.setPreviousNeighbours(previousWords);
+		grmmWord.setNextNeighbours(nextWords);
 		
 		return grmmWord;
 	}
@@ -103,13 +106,90 @@ public class NormalizationService {
 		
 		List<GRMMNormalisedWord> normalisedWords = new ArrayList<>();
 		
-		sentence.getWords().forEach( word -> {
-			GRMMNormalisedWord grmmWord = normaliseGRMMWord(word);
-			if(grmmWord != null) {
+		for(int i=0; i< sentence.getWords().size(); i++) {
+			if(i == 0) {
+				//There is no previous neighbor, only next neighbors
+				List<GRMMNeighbour> nextNeighbours = new ArrayList<>();
+				//index of next neighbours
+				int index = 1;
+				for(int j = i + 1; j <= i + 3; j ++) {
+					if(j < sentence.getWords().size()) {
+						GRMMNeighbour neighbour = new GRMMNeighbour(sentence.getWords().get(j), index);
+						nextNeighbours.add(neighbour);
+						index ++;
+					}
+				}
+				GRMMNormalisedWord grmmWord = normaliseGRMMWord(sentence.getWords().get(i), Collections.emptyList(), nextNeighbours);
 				normalisedWords.add(grmmWord);
 			}
 			
-		});
+			else if(i == 1) {
+				//It only has only previous neighbour
+				List<GRMMNeighbour> previousNeighbours = new ArrayList<>();
+				GRMMNeighbour previousNeighbourneighbour = new GRMMNeighbour(sentence.getWords().get(0), -1);
+				previousNeighbours.add(previousNeighbourneighbour);
+				
+				//Next neighbours
+				List<GRMMNeighbour> nextNeighbours = new ArrayList<>();
+				int index = 1;
+				for(int j = i + 1; j <= i + 3; j ++) {
+					if(j < sentence.getWords().size()) {
+						GRMMNeighbour neighbour = new GRMMNeighbour(sentence.getWords().get(j), index);
+						nextNeighbours.add(neighbour);
+						index ++;
+					}
+				}
+				GRMMNormalisedWord grmmWord = normaliseGRMMWord(sentence.getWords().get(i), previousNeighbours, nextNeighbours);
+				normalisedWords.add(grmmWord);
+			}
+			else if(i == 2) {
+				//It only has two previous neighbours
+				List<GRMMNeighbour> previousNeighbours = new ArrayList<>();
+				GRMMNeighbour previousNeighbourneighbour = new GRMMNeighbour(sentence.getWords().get(0), -2);
+				previousNeighbours.add(previousNeighbourneighbour);
+				
+				GRMMNeighbour previousNeighbourneighbour2 = new GRMMNeighbour(sentence.getWords().get(1), -1);
+				previousNeighbours.add(previousNeighbourneighbour2);
+				
+				//Next neighbours
+				List<GRMMNeighbour> nextNeighbours = new ArrayList<>();
+				int index = 1;
+				for(int j = i + 1; j <= i + 3; j ++) {
+					if(j < sentence.getWords().size()) {
+						GRMMNeighbour neighbour = new GRMMNeighbour(sentence.getWords().get(j), index);
+						nextNeighbours.add(neighbour);
+						index ++;
+					}
+				}
+				GRMMNormalisedWord grmmWord = normaliseGRMMWord(sentence.getWords().get(i), previousNeighbours, nextNeighbours);
+				normalisedWords.add(grmmWord);
+			} else {
+				List<GRMMNeighbour> previousNeighbours = new ArrayList<>();
+				GRMMNeighbour previousNeighbourneighbour = new GRMMNeighbour(sentence.getWords().get(0), -3);
+				previousNeighbours.add(previousNeighbourneighbour);
+				
+				GRMMNeighbour previousNeighbourneighbour2 = new GRMMNeighbour(sentence.getWords().get(1), -2);
+				previousNeighbours.add(previousNeighbourneighbour2);
+				
+				GRMMNeighbour previousNeighbourneighbour3 = new GRMMNeighbour(sentence.getWords().get(1), -1);
+				previousNeighbours.add(previousNeighbourneighbour3);
+				
+				//Next neighbours
+				List<GRMMNeighbour> nextNeighbours = new ArrayList<>();
+				int index = 1;
+				for(int j = i + 1; j <= i + 3; j ++) {
+					if(j < sentence.getWords().size()) {
+						GRMMNeighbour neighbour = new GRMMNeighbour(sentence.getWords().get(j), index);
+						nextNeighbours.add(neighbour);
+						index ++;
+					}
+				}
+				GRMMNormalisedWord grmmWord = normaliseGRMMWord(sentence.getWords().get(i), previousNeighbours, nextNeighbours);
+				normalisedWords.add(grmmWord);
+			}
+			
+			
+		}
 		
 		return normalisedWords;
 	}

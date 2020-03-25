@@ -20,16 +20,19 @@ import com.socrates.corpus.parser.model.Word;
 @Service
 public class ARFFOutputService {
 	
-	private final static String NEGATIVE = "negative";
-	private final static String POSITIVE = "positive";
-	private final static String WHITE_SPACE = " ";
-	private final static String SEPARATION = "----";
-	private final static String DOMAIN_FAIL_NAME = "domain_filename";
-	private final static String SENTENCE_NUMBER = "sentence_number";
-	private final static String TOKEN_NUMBER = "token_number";
-	private final static String LEMA = "lemma";
-	private final static String PART_OF_SPEECH = "part_of_speech";
-	private final static String EQUALS = "=";
+	private static final String NEGATIVE = "negation";
+	private static final String POSITIVE = "positive";
+	private static final String WHITE_SPACE = " ";
+	private static final String SEPARATION = "----";
+	private static final String DOMAIN_FAIL_NAME = "domain_filename";
+	private static final String SENTENCE_NUMBER = "sentence_number";
+	private static final String TOKEN_NUMBER = "token_number";
+	private static final String LEMA = "lemma";
+	private static final String PART_OF_SPEECH = "part_of_speech";
+	private static final String PART_OF_SPEECH_TYPE = "part_of_speech_type";
+	private static final String EQUALS = "=";
+	private static final String AT = "@";
+	private static final String Class = "CLASS";
 	
 	@Autowired
 	private CorpusParser corpusParser;
@@ -80,6 +83,71 @@ public class ARFFOutputService {
 				fw.write(PART_OF_SPEECH);
 				fw.write(EQUALS);
 				fw.write(word.getPartOfSpeach());
+				fw.write(WHITE_SPACE);
+				
+				word.getPreviousNeighbours().forEach(previousNeighbour -> {
+					try {
+						fw.write(LEMA);
+						fw.write(EQUALS);
+						fw.write(previousNeighbour.getLema());
+						fw.write(AT);
+						fw.write(String.valueOf(previousNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+						fw.write(PART_OF_SPEECH);
+						fw.write(EQUALS);
+						fw.write(previousNeighbour.getPartOfSpeech());
+						fw.write(AT);
+						fw.write(String.valueOf(previousNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+						fw.write(PART_OF_SPEECH_TYPE);
+						fw.write(EQUALS);
+						fw.write(previousNeighbour.getPartOfSpeechType());
+						fw.write(AT);
+						fw.write(String.valueOf(previousNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+				
+				word.getNextNeighbours().forEach( nextNeighbour -> {
+					try {
+						fw.write(LEMA);
+						fw.write(EQUALS);
+						fw.write(nextNeighbour.getLema());
+						fw.write(AT);
+						fw.write(String.valueOf(nextNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+						fw.write(PART_OF_SPEECH);
+						fw.write(EQUALS);
+						fw.write(nextNeighbour.getPartOfSpeech());
+						fw.write(AT);
+						fw.write(String.valueOf(nextNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+						fw.write(PART_OF_SPEECH_TYPE);
+						fw.write(EQUALS);
+						fw.write(nextNeighbour.getPartOfSpeechType());
+						fw.write(AT);
+						fw.write(String.valueOf(nextNeighbour.getIndex()));
+						fw.write(WHITE_SPACE);
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+				
+				if(word.getNegation() != null) {
+					fw.write(NEGATIVE);
+					fw.write(EQUALS);
+					fw.write(word.getNegation());
+				}
 				
 				fw.write("\n");
 				
@@ -87,7 +155,6 @@ public class ARFFOutputService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			
 		});
 		

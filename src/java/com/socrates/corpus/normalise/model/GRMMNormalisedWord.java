@@ -1,5 +1,7 @@
 package com.socrates.corpus.normalise.model;
 
+import java.util.List;
+
 public class GRMMNormalisedWord {
 	
 	private String domain;
@@ -10,6 +12,8 @@ public class GRMMNormalisedWord {
 	private String partOfSpeach;
 	private String partOfSpeachType;
 	private String negation;
+	private List<GRMMNeighbour> previousNeighbours;
+	private List<GRMMNeighbour> nextNeighbours;
 	
 	public String getDomain() {
 		return domain;
@@ -123,6 +127,18 @@ public class GRMMNormalisedWord {
 		return "GRMMNormalisedWord [domain=" + domain + ", sentenceNumber=" + sentenceNumber + ", tokenNumber="
 				+ tokenNumber + ", word=" + word + ", lema=" + lema + ", partOfSpeach=" + partOfSpeach
 				+ ", partOfSpeachType=" + partOfSpeachType + ", negation=" + negation + "]";
+	}
+	public List<GRMMNeighbour> getNextNeighbours() {
+		return nextNeighbours;
+	}
+	public void setNextNeighbours(List<GRMMNeighbour> nextNeighbours) {
+		this.nextNeighbours = nextNeighbours;
+	}
+	public List<GRMMNeighbour> getPreviousNeighbours() {
+		return previousNeighbours;
+	}
+	public void setPreviousNeighbours(List<GRMMNeighbour> previousNeighbours) {
+		this.previousNeighbours = previousNeighbours;
 	}
 
 }

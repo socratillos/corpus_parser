@@ -3,6 +3,7 @@ package com.socrates.corpus.parser.model;
 public class Word {
 	
 	private static final String NEGATION_STRING = "***";
+	private static final String SLASH_STRING = "-";
 	
 	private String domain;
 	private int sentenceNumber;
@@ -15,7 +16,7 @@ public class Word {
 	private String secondNegation;
 	
 	public boolean isNegation() {
-		return negation != null && !negation.contains(NEGATION_STRING);
+		return negation != null && !negation.contains(NEGATION_STRING) && !negation.contains(SLASH_STRING);
 	}
 	
 	public String getDomain() {
