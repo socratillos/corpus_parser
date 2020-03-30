@@ -32,6 +32,9 @@ public class ARFFOutputService {
 	private static final String PART_OF_SPEECH_TYPE = "part_of_speech_type";
 	private static final String EQUALS = "=";
 	private static final String AT = "@";
+	private static final String BELONG_TO_NEGATION = "belong_to_negation";
+	private static final String ASTERISCT = "*";
+	private static final String SLASH = "-";
 	private static final String Class = "CLASS";
 	
 	@Autowired
@@ -84,6 +87,40 @@ public class ARFFOutputService {
 				fw.write(EQUALS);
 				fw.write(word.getPartOfSpeach());
 				fw.write(WHITE_SPACE);
+				
+				if(word.getNegation() != null) {
+					fw.write(NEGATIVE);
+					fw.write(EQUALS);
+					fw.write(word.getNegation());
+					fw.write(WHITE_SPACE);
+					
+					fw.write(BELONG_TO_NEGATION);
+					fw.write(EQUALS);
+					fw.write(word.getBelongToNegation().toString());
+					fw.write(WHITE_SPACE);
+					
+				} else if(word.getBelongToNegation()) {
+					fw.write(NEGATIVE);
+					fw.write(EQUALS);
+					fw.write(SLASH);
+					fw.write(WHITE_SPACE);
+					
+					fw.write(BELONG_TO_NEGATION);
+					fw.write(EQUALS);
+					fw.write(word.getBelongToNegation().toString());
+					fw.write(WHITE_SPACE);
+				} else {
+					fw.write(NEGATIVE);
+					fw.write(EQUALS);
+					fw.write(ASTERISCT);
+					fw.write(WHITE_SPACE);
+					
+					fw.write(BELONG_TO_NEGATION);
+					fw.write(EQUALS);
+					fw.write(word.getBelongToNegation().toString());
+					fw.write(WHITE_SPACE);
+				}
+				
 				
 				word.getPreviousNeighbours().forEach(previousNeighbour -> {
 					try {
@@ -142,12 +179,6 @@ public class ARFFOutputService {
 						e.printStackTrace();
 					}
 				});
-				
-				if(word.getNegation() != null) {
-					fw.write(NEGATIVE);
-					fw.write(EQUALS);
-					fw.write(word.getNegation());
-				}
 				
 				fw.write("\n");
 				

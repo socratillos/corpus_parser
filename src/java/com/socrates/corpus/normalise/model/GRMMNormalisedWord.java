@@ -12,6 +12,7 @@ public class GRMMNormalisedWord {
 	private String partOfSpeach;
 	private String partOfSpeachType;
 	private String negation;
+	private Boolean belongToNegation;
 	private List<GRMMNeighbour> previousNeighbours;
 	private List<GRMMNeighbour> nextNeighbours;
 	
@@ -139,6 +140,12 @@ public class GRMMNormalisedWord {
 	}
 	public void setPreviousNeighbours(List<GRMMNeighbour> previousNeighbours) {
 		this.previousNeighbours = previousNeighbours;
+	}
+	public Boolean getBelongToNegation() {
+		return belongToNegation;
+	}
+	public void setBelongToNegation(Boolean belongToNegation) {
+		this.belongToNegation = belongToNegation;
 	}
 
 }

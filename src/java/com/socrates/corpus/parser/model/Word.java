@@ -14,6 +14,7 @@ public class Word {
 	private String partOfSpeachType;
 	private String negation;
 	private String secondNegation;
+	private Boolean belongToNegation;
 	
 	public boolean isNegation() {
 		return negation != null && !negation.contains(NEGATION_STRING) && !negation.contains(SLASH_STRING);
@@ -66,6 +67,11 @@ public class Word {
 	}
 	public void setNegation(String negation) {
 		this.negation = negation;
+		if(SLASH_STRING.equals(negation) || !NEGATION_STRING.equals(negation)) {
+			this.belongToNegation = Boolean.TRUE;
+		} else {
+			this.belongToNegation = Boolean.FALSE;
+		}
 	}
 	public String getSecondNegation() {
 		return secondNegation;
@@ -73,11 +79,22 @@ public class Word {
 	public void setSecondNegation(String secondNegation) {
 		this.secondNegation = secondNegation;
 	}
+	
+	public Boolean getBelongToNegation() {
+		return belongToNegation;
+	}
+
+	public void setBelongToNegation(Boolean belongToNegation) {
+		this.belongToNegation = belongToNegation;
+	}
+
 	@Override
 	public String toString() {
 		return "Word [domain=" + domain + ", sentenceNumber=" + sentenceNumber + ", tokenNumber=" + tokenNumber
 				+ ", word=" + word + ", lema=" + lema + ", partOfSpeach=" + partOfSpeach + ", partOfSpeachType="
-				+ partOfSpeachType + ", negation=" + negation + ", secondNegation=" + secondNegation + "]";
+				+ partOfSpeachType + ", negation=" + negation + ", secondNegation=" + secondNegation
+				+ ", belongToNegation=" + belongToNegation + "]";
 	}
+	
 	
 }

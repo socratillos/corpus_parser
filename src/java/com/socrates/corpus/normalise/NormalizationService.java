@@ -96,7 +96,7 @@ public class NormalizationService {
 		}
 		grmmWord.setPreviousNeighbours(previousWords);
 		grmmWord.setNextNeighbours(nextWords);
-		
+		grmmWord.setBelongToNegation(word.getBelongToNegation());
 		return grmmWord;
 	}
 	
