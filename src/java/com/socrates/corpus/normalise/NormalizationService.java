@@ -20,8 +20,6 @@ import com.socrates.corpus.parser.model.Word;
 import com.socrates.corpus.redis.model.Lema;
 import com.socrates.corpus.redis.repo.LemaRepository;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
-
 @Service
 public class NormalizationService {
 	
@@ -220,6 +218,7 @@ public class NormalizationService {
 		emptyWord.setLema(EMPTY_LONG);
 		emptyWord.setPartOfSpeach(EMPTY_LONG);
 		emptyWord.setPartOfSpeachType(EMPTY_LONG);
+		emptyWord.setNegation(word.getNegation());
 		
 		return emptyWord;
 	}
@@ -259,7 +258,7 @@ public class NormalizationService {
 		
 		if(normalisedWords.isEmpty()) {
 			return Collections.emptyList();
-		} else if(sentence.getNumberOfWords() < max){
+		} else if(sentence.getNumberOfWords() < max) {//Complete with empty words
 			int dif = max - sentence.getNumberOfWords();
 			
 			for(int i = 0; i < dif; i++) {
@@ -267,7 +266,6 @@ public class NormalizationService {
 				NormalisedWord lastNormalisedWord = normalisedWords.get(normalisedWords.size() - 1);
 				normalisedWords.add(normaliseEmptyWord(lastNormalisedWord));
 			}
-			
 		}
 		
 		return normalisedWords;

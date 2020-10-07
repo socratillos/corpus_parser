@@ -1,4 +1,4 @@
-package com.socrates.corpus.parser.arff.output;
+package com.socrates.corpus.parser;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -28,12 +28,18 @@ import com.socrates.corpus.parser.model.Word;
 import com.socrates.corpus.redis.model.Lema;
 import com.socrates.corpus.redis.repo.LemaRepository;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ARFFOutputTest {
 	
-	private static final String path = "src/test/resources/data/dev_coches_task2.txt";
+	private static final String path = "src/test/resources/data/dev_peliculas_task2.txt";
 	File file;
+	private static final String path2 = "src/test/resources/data/dev_hoteles_task2.txt";
+	File file2;
+	private static final String arffOuputPath = "src/test/resources/data/corpus.arff";
+	private static final String grmmOutputPath = "src/test/resources/data/corpus_test.txt";
+	
 	
 	@Autowired
 	private ARFFOutputService outputService;
@@ -53,12 +59,13 @@ public class ARFFOutputTest {
 	@Before
 	public void setUp() {
 		file = new File(path);
+		file2 = new File(path2);
 	}
 	
 	@Test
 	public void testWriteFileFromNormalisedObject() {
 		try {
-			FileWriter fw = outputService.writeFormatedFileFromInputFile(file);
+			FileWriter fw = outputService.writeFormatedFileFromInputFile(file, arffOuputPath);
 			assertNotNull(fw);
 		} catch(Throwable ex) {
 			ex.printStackTrace();
@@ -66,7 +73,6 @@ public class ARFFOutputTest {
 		}
 	}
 	
-	//writeFileFromGRMMNormalisedObject
 	@Test
 	public void testWriteFileFromGRMMListOfNormalisedObject() {
 		try {
@@ -95,7 +101,7 @@ public class ARFFOutputTest {
 			
 			//Write the normalized sentences into the file
 			List<GRMMNormalisedWord> normalisedWords = normalizationService.normaliseGRMMSentences(sentences);
-			FileWriter fw = outputService.writeFileFromGRMMNormalisedObject(normalisedWords);
+			FileWriter fw = outputService.writeFileFromGRMMNormalisedObject(normalisedWords, grmmOutputPath);
 			assertNotNull(fw);
 			
 			//Test for redis
@@ -125,6 +131,11 @@ public class ARFFOutputTest {
 					Word word = corpusParser.parseWordLine(parts);
 					sentence.addWord(word);
 				} else {
+					
+					if(hasNegation(sentence)) {
+						setSentenceNegated(sentence);
+					}
+					
 					sentences.add(sentence);
 					sentence = new Sentence();
 				}
@@ -141,7 +152,7 @@ public class ARFFOutputTest {
 			
 			//Write the normalized sentences into the file
 			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentences, max);
-			FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords);
+			FileWriter fw = outputService.writeFileFromNormalisedObject(normalisedWords, arffOuputPath);
 			assertNotNull(fw);
 			
 			//Test for redis
@@ -157,6 +168,22 @@ public class ARFFOutputTest {
 			ex.printStackTrace();
 			fail("Exception trying to test normalise method for list of sentences: " + ex.getLocalizedMessage());
 		}
+	}
+	
+	private void setSentenceNegated(Sentence sentence) {
+		sentence.getWords().forEach(word -> {
+			word.setNegation("T");
+		});
+	}
+	
+	private Boolean hasNegation(Sentence sentence) {
+		for(Word word:sentence.getWords()) {
+			if(word.isNegation()) {
+				return Boolean.TRUE;
+			}
+		}
+		
+		return Boolean.FALSE;
 	}
 	
 }

@@ -49,10 +49,33 @@ public class CorpusParser {
 				Word word = parseWordLine(parts);
 				sentence.addWord(word);
 			} else {
+				
+//				if(hasNegation(sentence)) {
+//					setSentenceNegated(sentence);
+//				}
+				
 				sentences.add(sentence);
 				sentence = new Sentence();
 			}
 		}
+		
+		
 		return sentences;
+	}
+	
+	private void setSentenceNegated(Sentence sentence) {
+		sentence.getWords().forEach(word -> {
+			word.setNegation("T");
+		});
+	}
+	
+	private Boolean hasNegation(Sentence sentence) {
+		for(Word word:sentence.getWords()) {
+			if(word.isNegation()) {
+				return Boolean.TRUE;
+			}
+		}
+		
+		return Boolean.FALSE;
 	}
 }

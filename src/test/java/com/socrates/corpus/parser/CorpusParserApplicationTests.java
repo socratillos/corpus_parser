@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import com.socrates.corpus.parser.model.Word;
 @SpringBootTest
 public class CorpusParserApplicationTests {
 	
-	private static final String path = "src/test/resources/data/corpus_test.txt";
+	private static final String path = "src/test/resources/data/dev_coches_task2.txt";
 	private static final String path_space_division = "src/test/resources/data/corpus_with_space_division.txt";
 	private static final String LINE = "coches_yes_4_9	17	61	,	,	fc	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	";
 	
@@ -162,6 +163,7 @@ public class CorpusParserApplicationTests {
 			assertTrue(hasTwoNegations);
 				
 		} catch(Throwable ex) {
+			ex.printStackTrace();
 			fail("Exception trying to test parseWordLine method: " + ex.getLocalizedMessage());
 		}
 	}

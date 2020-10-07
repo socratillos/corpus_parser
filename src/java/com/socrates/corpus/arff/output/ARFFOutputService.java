@@ -49,9 +49,9 @@ public class ARFFOutputService {
 	
 	private String title;
 	
-	public FileWriter writeFileFromGRMMNormalisedObject(List<GRMMNormalisedWord> normalisedWords) throws IOException {
-		FileWriter fw = new FileWriter("src/test/resources/data/corpus_test.txt");
-		
+	public FileWriter writeFileFromGRMMNormalisedObject(List<GRMMNormalisedWord> normalisedWords, String outputPath) throws IOException {
+		//FileWriter fw = new FileWriter("src/test/resources/data/corpus_test.txt");
+		FileWriter fw = new FileWriter(outputPath);
 		normalisedWords.forEach( word -> {
 			
 			try {
@@ -192,8 +192,8 @@ public class ARFFOutputService {
 		return fw;
 	}
 	
-	public FileWriter writeFileFromNormalisedObject(List<NormalisedWord> normalisedWords) throws IOException {
-		FileWriter fw = new FileWriter("src/test/resources/data/corpus.arff");
+	public FileWriter writeFileFromNormalisedObject(List<NormalisedWord> normalisedWords, String path) throws IOException {
+		FileWriter fw = new FileWriter(path);
 		
 		fw.write("% 1. Title: Test\n");
 		fw.write("%\n");
@@ -205,9 +205,9 @@ public class ARFFOutputService {
 		
 		fw.write(Headers.RELATION.header +" TEST\n");
 		fw.write("\n");
-		fw.write(Headers.ATTRIBUTE.header + " domain " + AttributeTypes.STRING.value+"\n");
-		fw.write(Headers.ATTRIBUTE.header + " sentenceNumber " + AttributeTypes.NUMERIC.value+"\n");
-		fw.write(Headers.ATTRIBUTE.header + " tokenNumber " + AttributeTypes.NUMERIC.value+"\n");
+		//fw.write(Headers.ATTRIBUTE.header + " domain " + AttributeTypes.STRING.value+"\n");
+		//fw.write(Headers.ATTRIBUTE.header + " sentenceNumber " + AttributeTypes.NUMERIC.value+"\n");
+		//fw.write(Headers.ATTRIBUTE.header + " tokenNumber " + AttributeTypes.NUMERIC.value+"\n");
 		fw.write(Headers.ATTRIBUTE.header + " word " + AttributeTypes.NUMERIC.value+"\n");
 		fw.write(Headers.ATTRIBUTE.header + " lema " + AttributeTypes.NUMERIC.value+"\n");
 		fw.write(Headers.ATTRIBUTE.header + " partOfSpeach " + AttributeTypes.NUMERIC.value+"\n");
@@ -218,9 +218,9 @@ public class ARFFOutputService {
 		
 		normalisedWords.forEach(normalisedWord -> {
 			try {
-				fw.write(normalisedWord.getDomainName()+",");
-				fw.write(normalisedWord.getSentenceNumber()+",");
-				fw.write(normalisedWord.getTokenNumber().toString()+",");
+				//fw.write(normalisedWord.getDomainName()+",");
+				//fw.write(normalisedWord.getSentenceNumber()+",");
+				//fw.write(normalisedWord.getTokenNumber().toString()+",");
 				fw.write(normalisedWord.getWord().toString()+",");
 				fw.write(normalisedWord.getLema().toString()+",");
 				fw.write(normalisedWord.getPartOfSpeach().toString()+",");
@@ -243,13 +243,13 @@ public class ARFFOutputService {
 	}
 	
 	
-	public FileWriter writeFormatedFileFromInputFile(File file) throws IOException{
+	public FileWriter writeFormatedFileFromInputFile(File file, String outputPath) throws IOException{
 		List<Sentence> sentences = corpusParser.parseFile(file);
 		FileWriter fw = null;
 		
 		for(Sentence sentence : sentences) {
 			List<NormalisedWord> normalisedWords = normalizationService.normalise(sentence);
-			fw = outputService.writeFileFromNormalisedObject(normalisedWords);
+			fw = outputService.writeFileFromNormalisedObject(normalisedWords, outputPath);
 		}
 		return fw;
 	}

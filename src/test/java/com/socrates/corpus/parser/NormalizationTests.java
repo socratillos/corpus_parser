@@ -8,6 +8,7 @@ import static org.junit.Assert.fail;
 import java.util.Optional;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +93,6 @@ public class NormalizationTests {
 	@Test
 	public void testNormalisedWithNegation() {
 		try {
-			//Word [domain=coches_no_2_20, sentenceNumber=6, tokenNumber=1, word=Hoy, lema=hoy, partOfSpeach=rg, partOfSpeachType=-, negation=-, secondNegation=-]
 			Optional<NormalisedWord> optionalObject = normalizationService.normalise(wordWithNegation);
 			assertTrue(optionalObject.isPresent());
 			
@@ -113,9 +113,10 @@ public class NormalizationTests {
 			Long partOfSpeachTypeId = PartOfSpeachTypeMap.getPartOfSpeechTypeId(PART_OF_SPEACH_TYPE_NEGATION);
 			assertEquals(partOfSpeachTypeId, normalisedWord.getPartOfSpeachType());
 			
-			assertEquals(1L, normalisedWord.getNegation());
-			assertEquals(1L, normalisedWord.getSecondNegation());
+			assertEquals(0L, normalisedWord.getNegation());
+			assertEquals(0L, normalisedWord.getSecondNegation());
 		} catch(Throwable ex) {
+			ex.printStackTrace();
 			fail("Exception trying to test normalise method with negation: " + ex.getLocalizedMessage());
 		 }
 	}

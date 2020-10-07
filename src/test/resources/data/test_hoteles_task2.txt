@@ -1,0 +1,218 @@
+hoteles_no_2_6	10	1	Hasta	hasta	sps00	preposition	-	-	-	-	-	-	
+hoteles_no_2_6	10	2	la	el	da0fs0	article	-	-	-	-	-	-	
+hoteles_no_2_6	10	3	6_de_la_tarde	[??:??/??/??:6.00:pm]	w	-	-	-	-	-	-	-	
+hoteles_no_2_6	10	4	no	no	rn	negative	no	-	-	-	-	-	
+hoteles_no_2_6	10	5	nos	nos	pp1cp000	personal	-	-	-	-	-	-	
+hoteles_no_2_6	10	6	dieron	dar	vmis3p0	main	-	-	-	-	-	-	
+hoteles_no_2_6	10	7	las	el	da0fp0	article	-	-	-	-	-	-	
+hoteles_no_2_6	10	8	habitaciones	habitación	ncfp000	common	-	-	-	-	-	-	
+hoteles_no_2_6	10	9	,	,	fc	-	-	-	-	-	-	-	
+hoteles_no_2_6	10	10	que	que	cs	subordinating	-	-	-	-	-	-	
+hoteles_no_2_6	10	11	por_supuesto	por_supuesto	rg	-	-	-	-	-	-	-	
+hoteles_no_2_6	10	12	no	no	rn	negative	-	-	-	no	-	-	
+hoteles_no_2_6	10	13	estaban	estar	vmii3p0	main	-	-	-	-	-	-	
+hoteles_no_2_6	10	14	siquiera	siquiera	rg	-	-	-	-	siquiera	-	-	
+hoteles_no_2_6	10	15	todas	todo	di0fp0	indefinite	-	-	-	-	-	-	
+hoteles_no_2_6	10	16	en	en	sps00	preposition	-	-	-	-	-	-	
+hoteles_no_2_6	10	17	el	el	da0ms0	article	-	-	-	-	-	-	
+hoteles_no_2_6	10	18	mismo	mismo	aq0ms0	qualificative	-	-	-	-	-	-	
+hoteles_no_2_6	10	19	piso	piso	ncms000	common	-	-	-	-	-	-	
+hoteles_no_2_6	10	20	.	.	fp	-	-	-	-	-	-	-	
+
+hoteles_no_2_6	11	1	En_mi_vida	en_mi_vida	rg	-	En_mi_vida	-	-	
+hoteles_no_2_6	11	2	he	haber	vaip1s0	auxiliary	-	-	-	
+hoteles_no_2_6	11	3	hecho	hacer	vmp00sm	main	-	-	-	
+hoteles_no_2_6	11	4	una	uno	di0fs0	indefinite	-	-	-	
+hoteles_no_2_6	11	5	reserva	reserva	ncfs000	common	-	-	-	
+hoteles_no_2_6	11	6	con	con	sps00	preposition	-	-	-	
+hoteles_no_2_6	11	7	tanta	tanto	di0fs0	indefinite	-	-	-	
+hoteles_no_2_6	11	8	antelación	antelación	ncfs000	common	-	-	-	
+hoteles_no_2_6	11	9	y	y	cc	coordinating	-	-	-	
+hoteles_no_2_6	11	10	a_pesar_de	a_pesar_de	sps00	preposition	-	-	-	
+hoteles_no_2_6	11	11	ello	ello	pd0ns000	demonstrative	-	-	-	
+hoteles_no_2_6	11	12	fue	ser	vsis3s0	semiauxiliary	-	-	-	
+hoteles_no_2_6	11	13	desastroso	desastroso	aq0ms0	qualificative	-	-	-	
+hoteles_no_2_6	11	14	.	.	fp	-	-	-	-	
+
+hoteles_no_2_6	12	1	Desastroso	desastroso	np00000	proper	-	-	-	
+hoteles_no_2_6	12	2	el	el	da0ms0	article	-	-	-	
+hoteles_no_2_6	12	3	servicio	servicio	ncms000	common	-	-	-	
+hoteles_no_2_6	12	4	de	de	sps00	preposition	-	-	-	
+hoteles_no_2_6	12	5	reservas	reserva	ncfp000	common	-	-	-	
+hoteles_no_2_6	12	6	telefónico	telefónico	aq0ms0	qualificative	-	-	-	
+hoteles_no_2_6	12	7	,	,	fc	-	-	-	-	
+hoteles_no_2_6	12	8	si	si	cs	subordinating	-	-	-	
+hoteles_no_2_6	12	9	llamo	llamar	vmip1s0	main	-	-	-	
+hoteles_no_2_6	12	10	el	el	da0ms0	article	-	-	-	
+hoteles_no_2_6	12	11	día	día	ncms000	common	-	-	-	
+hoteles_no_2_6	12	12	antes	antes	rg	-	-	-	-	
+hoteles_no_2_6	12	13	para	para	sps00	preposition	-	-	-	
+hoteles_no_2_6	12	14	confirmar	confirmar	vmn0000	main	-	-	-	
+hoteles_no_2_6	12	15	que	que	cs	subordinating	-	-	-	
+hoteles_no_2_6	12	16	está	estar	vaip3s0	auxiliary	-	-	-	
+hoteles_no_2_6	12	17	todo	todo	pi0ms000	indefinite	-	-	-	
+hoteles_no_2_6	12	18	OK	ok	np00000	proper	-	-	-	
+hoteles_no_2_6	12	19	,	,	fc	-	-	-	-	
+hoteles_no_2_6	12	20	¿	¿	fia	-	-	-	-	
+hoteles_no_2_6	12	21	por	por	sps00	preposition	-	-	-	
+hoteles_no_2_6	12	22	que	que	pr0cn000	relative	-	-	-	
+hoteles_no_2_6	12	23	me	me	pp1cs000	personal	-	-	-	
+hoteles_no_2_6	12	24	dicen	decir	vmip3p0	main	-	-	-	
+hoteles_no_2_6	12	25	que	que	cs	subordinating	-	-	-	
+hoteles_no_2_6	12	26	sí	sí	pp3cno00	personal	-	-	-	
+hoteles_no_2_6	12	27	y	y	cc	coordinating	-	-	-	
+hoteles_no_2_6	12	28	ni_siquiera	ni_siquiera	rg	-	ni_siquiera	-	-	
+hoteles_no_2_6	12	29	hablan	hablar	vmip3p0	main	-	-	-	
+hoteles_no_2_6	12	30	con	con	sps00	preposition	-	-	-	
+hoteles_no_2_6	12	31	el	el	da0ms0	article	-	-	-	
+hoteles_no_2_6	12	32	hotel	hotel	ncms000	common	-	-	-	
+hoteles_no_2_6	12	33	para	para	sps00	preposition	-	-	-	
+hoteles_no_2_6	12	34	asegurar	asegurar	vmn0000	main	-	-	-	
+hoteles_no_2_6	12	35	se	se	pp3cn000	personal	-	-	-	
+hoteles_no_2_6	12	36	?	?	fit	-	-	-	-	
+
+hoteles_no_2_6	13	1	Luego	luego	rg	-	-	-	-	
+hoteles_no_2_6	13	2	el	el	da0ms0	article	-	-	-	
+hoteles_no_2_6	13	3	hotel	hotel	ncms000	common	-	-	-	
+hoteles_no_2_6	13	4	me	me	pp1cs000	personal	-	-	-	
+hoteles_no_2_6	13	5	dice	decir	vmip3s0	main	-	-	-	
+hoteles_no_2_6	13	6	que	que	cs	subordinating	-	-	-	
+hoteles_no_2_6	13	7	ellos	ellos	pp3mp000	personal	-	-	-	
+hoteles_no_2_6	13	8	no	no	rn	negative	no	-	-	
+hoteles_no_2_6	13	9	hacen_caso	hacer_caso	vmip3p0	main	-	-	-	
+hoteles_no_2_6	13	10	a	a	sps00	preposition	-	-	-	
+hoteles_no_2_6	13	11	esas	ese	dd0fp0	demonstrative	-	-	-	
+hoteles_no_2_6	13	12	reservas	reserva	ncfp000	common	-	-	-	
+hoteles_no_2_6	13	13	¿	¿	fia	-	-	-	-	
+hoteles_no_2_6	13	14	?	?	fit	-	-	-	-	
+hoteles_no_2_6	13	15	.	.	fp	-	-	-	-	
+
+hoteles_no_2_6	14	1	Y	y	np00000	proper	-	-	-	
+hoteles_no_2_6	14	2	bueno	bueno	i	-	-	-	-	
+hoteles_no_2_6	14	3	,	,	fc	-	-	-	-	
+hoteles_no_2_6	14	4	casi	casi	rg	-	casi	-	-	
+hoteles_no_2_6	14	5	no	no	rn	negative	no	-	-	
+hoteles_no_2_6	14	6	me	me	pp1cs000	personal	-	-	-	
+hoteles_no_2_6	14	7	quieren	querer	vmip3p0	main	-	-	-	
+hoteles_no_2_6	14	8	ni	ni	rg	-	ni	-	-	
+hoteles_no_2_6	14	9	aceptar	aceptar	vmn0000	main	-	-	-	
+hoteles_no_2_6	14	10	la	el	da0fs0	article	-	-	-	
+hoteles_no_2_6	14	11	tarifa	tarifa	ncfs000	common	-	-	-	
+hoteles_no_2_6	14	12	web	web	aq0cn0	qualificative	-	-	-	
+hoteles_no_2_6	14	13	,	,	fc	-	-	-	-	
+hoteles_no_2_6	14	14	me	me	pp1cs000	personal	-	-	-	
+hoteles_no_2_6	14	15	tuve	tener	vmis1s0	main	-	-	-	
+hoteles_no_2_6	14	16	que	que	cs	subordinating	-	-	-	
+hoteles_no_2_6	14	17	poner	poner	vmn0000	main	-	-	-	
+hoteles_no_2_6	14	18	farruca	farruco	ncfs000	common	-	-	-	
+hoteles_no_2_6	14	19	,	,	fc	-	-	-	-	
+hoteles_no_2_6	14	20	por_no_decir_que	por_no_decir_que	rg	-	-	-	-	
+hoteles_no_2_6	14	21	al_principio	al_principio	rg	-	-	-	-	
+hoteles_no_2_6	14	22	la	el	da0fs0	article	-	-	-	
+hoteles_no_2_6	14	23	chica	chico	ncfs000	common	-	-	-	
+hoteles_no_2_6	14	24	incluso	incluso	rg	-	-	-	-	
+hoteles_no_2_6	14	25	dudaba	dudar	vmii3s0	main	-	-	-	
+hoteles_no_2_6	14	26	si	si	cs	subordinating	-	-	-	
+hoteles_no_2_6	14	27	tendría	tener	vmic3s0	main	-	-	-	
+hoteles_no_2_6	14	28	habitaciones	habitación	ncfp000	common	-	-	-	
+hoteles_no_2_6	14	29	para	para	sps00	preposition	-	-	-	
+hoteles_no_2_6	14	30	nosotros	nosotros	pp1mp000	personal	-	-	-	
+hoteles_no_2_6	14	31	.	.	fp	-	-	-	-	
+
+hoteles_no_2_6	15	1	Los	los	np00000	proper	***	
+hoteles_no_2_6	15	2	puntos	punto	ncmp000	common	***	
+hoteles_no_2_6	15	3	de	de	sps00	preposition	***	
+hoteles_no_2_6	15	4	la	el	da0fs0	article	***	
+hoteles_no_2_6	15	5	tarjeta	tarjeta	ncfs000	common	***	
+hoteles_no_2_6	15	6	MÁS	más	np00000	proper	***	
+hoteles_no_2_6	15	7	-	-	fg	-	***	
+hoteles_no_2_6	15	8	recalco	recalcar	vmip1s0	main	***	
+hoteles_no_2_6	15	9	,	,	fc	-	***	
+hoteles_no_2_6	15	10	tarjeta	tarjeta	ncfs000	common	***	
+hoteles_no_2_6	15	11	de	de	sps00	preposition	***	
+hoteles_no_2_6	15	12	F-I-D-E-L-I-Z-A-C-I-O-N	f-i-d-e-l-i-z-a-c-i-o-n	np00000	proper	***	
+hoteles_no_2_6	15	13	,	,	fc	-	***	
+hoteles_no_2_6	15	14	por	por	sps00	preposition	***	
+hoteles_no_2_6	15	15	si	si	cs	subordinating	***	
+hoteles_no_2_6	15	16	se	se	p00cn000	-	***	
+hoteles_no_2_6	15	17	les	le	pp3cpd00	personal	***	
+hoteles_no_2_6	15	18	olvida	olvidar	vmip3s0	main	***	
+hoteles_no_2_6	15	19	el	el	da0ms0	article	***	
+hoteles_no_2_6	15	20	objetivo	objetivo	ncms000	common	***	
+hoteles_no_2_6	15	21	de	de	sps00	preposition	***	
+hoteles_no_2_6	15	22	este	este	dd0ms0	demonstrative	***	
+hoteles_no_2_6	15	23	tipo	tipo	ncms000	common	***	
+hoteles_no_2_6	15	24	de	de	sps00	preposition	***	
+hoteles_no_2_6	15	25	tarjetas	tarjeta	ncfp000	common	***	
+hoteles_no_2_6	15	26	-	-	fg	-	***	
+hoteles_no_2_6	15	27	están	estar	vaip3p0	auxiliary	***	
+hoteles_no_2_6	15	28	reclamados	reclamar	vmp00pm	main	***	
+hoteles_no_2_6	15	29	y	y	cc	coordinating	***	
+hoteles_no_2_6	15	30	han	haber	vaip3p0	auxiliary	***	
+hoteles_no_2_6	15	31	pasado	pasar	vmp00sm	main	***	
+hoteles_no_2_6	15	32	más	más	rg	-	***	
+hoteles_no_2_6	15	33	de	de	sps00	preposition	***	
+hoteles_no_2_6	15	34	6	6	z	-	***	
+hoteles_no_2_6	15	35	meses	mes	ncmp000	common	***	
+hoteles_no_2_6	15	36	.	.	fp	-	***	
+
+hoteles_no_2_6	16	1	Detalles	detalle	ncmp000	common	***	
+hoteles_no_2_6	16	2	de	de	sps00	preposition	***	
+hoteles_no_2_6	16	3	el	el	da0ms0	article	***	
+hoteles_no_2_6	16	4	hotel	hotel	ncms000	common	***	
+hoteles_no_2_6	16	5	:	:	fd	-	***	
+hoteles_no_2_6	16	6	habitaciones	habitación	ncfp000	common	***	
+hoteles_no_2_6	16	7	pequeñas	pequeño	aq0fp0	qualificative	***	
+hoteles_no_2_6	16	8	pero	pero	cc	coordinating	***	
+hoteles_no_2_6	16	9	correctas	correcto	aq0fp0	qualificative	***	
+hoteles_no_2_6	16	10	,	,	fc	-	***	
+hoteles_no_2_6	16	11	hay	haber	vmip3s0	main	***	
+hoteles_no_2_6	16	12	un	uno	di0ms0	indefinite	***	
+hoteles_no_2_6	16	13	parking	parking	ncms000	common	***	
+hoteles_no_2_6	16	14	cercano	cercano	aq0ms0	qualificative	***	
+hoteles_no_2_6	16	15	de	de	sps00	preposition	***	
+hoteles_no_2_6	16	16	pago	pago	ncms000	common	***	
+hoteles_no_2_6	16	17	.	.	fp	-	***	
+
+hoteles_no_2_6	17	1	Estás	estar	vaip2s0	auxiliary	-	-	-	
+hoteles_no_2_6	17	2	en	en	sps00	preposition	-	-	-	
+hoteles_no_2_6	17	3	plena	pleno	aq0fs0	qualificative	-	-	-	
+hoteles_no_2_6	17	4	gran	gran	aq0cs0	qualificative	-	-	-	
+hoteles_no_2_6	17	5	via	via	ncfs000	common	-	-	-	
+hoteles_no_2_6	17	6	,	,	fc	-	-	-	-	
+hoteles_no_2_6	17	7	que	que	pr0cn000	relative	-	-	-	
+hoteles_no_2_6	17	8	puedes	poder	vmip2s0	main	-	-	-	
+hoteles_no_2_6	17	9	ver	ver	vmn0000	main	-	-	-	
+hoteles_no_2_6	17	10	desde	desde	sps00	preposition	-	-	-	
+hoteles_no_2_6	17	11	la	el	da0fs0	article	-	-	-	
+hoteles_no_2_6	17	12	ventana	ventana	ncfs000	common	-	-	-	
+hoteles_no_2_6	17	13	de	de	sps00	preposition	-	-	-	
+hoteles_no_2_6	17	14	tu	tu	dp2css	possessive	-	-	-	
+hoteles_no_2_6	17	15	habitación	habitación	ncfs000	common	-	-	-	
+hoteles_no_2_6	17	16	,	,	fc	-	-	-	-	
+hoteles_no_2_6	17	17	No	no	rn	negative	No	-	-	
+hoteles_no_2_6	17	18	hay	haber	vmip3s0	main	-	-	-	
+hoteles_no_2_6	17	19	restaurante	restaurante	ncms000	common	-	-	-	
+hoteles_no_2_6	17	20	,	,	fc	-	-	-	-	
+hoteles_no_2_6	17	21	sólo	sólo	rg	-	-	-	-	
+hoteles_no_2_6	17	22	una	uno	di0fs0	indefinite	-	-	-	
+hoteles_no_2_6	17	23	cafetería	cafetería	ncfs000	common	-	-	-	
+hoteles_no_2_6	17	24	con	con	sps00	preposition	-	-	-	
+hoteles_no_2_6	17	25	madalenas	madalenas	ncfp000	common	-	-	-	
+hoteles_no_2_6	17	26	empaquetadas	empaquetar	vmp00pf	main	-	-	-	
+hoteles_no_2_6	17	27	,	,	fc	-	-	-	-	
+hoteles_no_2_6	17	28	aunque	aunque	cc	coordinating	-	-	-	
+hoteles_no_2_6	17	29	sí	sí	rg	-	-	-	-	
+hoteles_no_2_6	17	30	se	se	p00cn000	-	-	-	-	
+hoteles_no_2_6	17	31	sirven	servir	vmip3p0	main	-	-	-	
+hoteles_no_2_6	17	32	desayunos	desayuno	ncmp000	common	-	-	-	
+hoteles_no_2_6	17	33	.	.	fp	-	-	-	-	
+
+hoteles_no_2_6	18	1	Los	el	da0mp0	article	***	
+hoteles_no_2_6	18	2	empleados	empleado	ncmp000	common	***	
+hoteles_no_2_6	18	3	son	ser	vsip3p0	semiauxiliary	***	
+hoteles_no_2_6	18	4	amables	amable	aq0cp0	qualificative	***	
+hoteles_no_2_6	18	5	pero	pero	cc	coordinating	***	
+hoteles_no_2_6	18	6	poco	poco	rg	-	***	
+hoteles_no_2_6	18	7	eficientes	eficiente	aq0cp0	qualificative	***	
+hoteles_no_2_6	18	8	.	.	fp	-	***	

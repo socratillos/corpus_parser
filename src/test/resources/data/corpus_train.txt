@@ -1,0 +1,5 @@
+Lo ---- lema=el partSpeech=da0ns0 partSpeechType=article class=positive
+barato ---- lema=barato partSpeech=aq0ms0 partSpeechType=qualificative class=positive
+sale ---- lema=salir partSpeech=vmip3s0 partSpeechType=main class=positive
+caro ---- lema=caro partSpeech=aq0ms0 partSpeechType=qualificative class=positive
+. ---- lema=. partSpeech=fp partSpeechType=- class=positive
